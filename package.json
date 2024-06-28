@@ -18,7 +18,7 @@
     "request-promise": "^4.2.6"
   },
   "scripts": {
-    "test": "npm run test",
+    
     "start": "nodemon server.js"
   },
   "keywords": [],
