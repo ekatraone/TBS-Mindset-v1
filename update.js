@@ -11,7 +11,7 @@ let apiKey = process.env.personal_access_token;
 async function updateField(id, field_name, updatedValue) {
   try {
     const tableName = 'Test'; // Replace with your table name
-    const url = `https://api.airtable.com/v0/${baseId}/${tableName}/${id}`;
+    const url = `https://api.airtable.com/v0/${baseId}/${tableId}/${id}`;
     // console.log("Update URL ",url)
 
     const response = await fetch(url, {

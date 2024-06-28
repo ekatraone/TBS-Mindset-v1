@@ -291,7 +291,7 @@ async function store_responses(number, value) {
     let course_tn = await us.findTable(number);
     console.log(value);
 
-    const response = await fetch(`https://api.airtable.com/v0/${baseId}/Test?filterByFormula=({Phone} = "${number}")&view=Grid view`, {
+    const response = await fetch(`https://api.airtable.com/v0/${baseId}/${student_table}?filterByFormula=({Phone} = "${number}")&view=Grid view`, {
         headers: {
             Authorization: `Bearer ${apiKey}`
         }
@@ -561,7 +561,7 @@ async function store_responses(number, value) {
 async function store_intResponse(number, value) {
     let course_tn = await us.findTable(number);
 
-    const response = await fetch(`https://api.airtable.com/v0/${baseId}/Test?filterByFormula=({Phone} = "${number}")&view=Grid view`, {
+    const response = await fetch(`https://api.airtable.com/v0/${baseId}/${student_table}?filterByFormula=({Phone} = "${number}")&view=Grid view`, {
         headers: {
             Authorization: `Bearer ${apiKey}`
         }
@@ -628,7 +628,7 @@ async function store_intResponse(number, value) {
 async function store_quesResponse(number, value) {
     // var course_tn = await us.findTable(number)
 
-    const response = await fetch(`https://api.airtable.com/v0/${baseId}/Test?filterByFormula=({Phone} = ${number})&view=Grid view`, {
+    const response = await fetch(`https://api.airtable.com/v0/${baseId}/${student_table}?filterByFormula=({Phone} = ${number})&view=Grid view`, {
         headers: {
             Authorization: `Bearer ${apiKey}`
         }
