@@ -315,7 +315,7 @@ async function store_responses(number, value) {
         let title = list[0];
         let feedback = ["I am not sure", "No, I do not", "Some parts are confusing", "Yes, I do"];
         let correct_ans = await us.findAns(currentDay, currentModule, number).then().catch(e => console.log("Error in findAns ", e));
-        console.log("Correct ans ", correct_ans);
+        // console.log("Correct ans ", correct_ans);
         if (correct_ans == null) {
             console.log("currentDay ", currentDay);
             let existingValues = await us.findField("Question Responses", number).then().catch(e => console.error(e)); console.log("existingValues 1 ", existingValues, title);
@@ -406,15 +406,17 @@ async function store_responses(number, value) {
             console.log("Correct ans ", correct_ans);
 
             let existingValues = await us.findField("Question Responses", number).then().catch(e => console.error(e));
-            console.log("existingValues ", existingValues);
+            // console.log("existingValues ", existingValues);
 
             let list = await us.findTitle(currentDay, currentModule, number).then().catch(e => console.error(e));
 
             let title = list[0];
             let options = list.filter((v, i) => i !== 0);
 
-            const isCorrect = correct_ans == value;
+            const isCorrect = correct_ans === value;
             const isSecondAttempt = last_msg == "Incorrect";
+
+            // console.log(isCorrect, isSecondAttempt, correct_ans == value, value)
 
             if (isCorrect || isSecondAttempt) {
                 let congratsMessages = [
@@ -426,6 +428,7 @@ async function store_responses(number, value) {
                 ];
 
                 if (isCorrect && !isSecondAttempt) {
+                    console.log("1st attempt correct!")
                     
                     WA.sendText(congratsMessages[Math.floor(Math.random() * congratsMessages.length)], number);
                     console.log(`${title} 1st attempt correct`);
@@ -651,8 +654,11 @@ async function store_quesResponse(number, value) {
         if (currentModule !== undefined) {
             let ques = await us.findQuestion(currentDay, currentModule, number).then().catch(e => console.error("Error in store_quesResponse ", e));
 
-            last_msg = last_msg.replace("Q: ", "");
-            console.log("Last msg and question in store_quesResponse ", last_msg, ques);
+            if (typeof last_msg === 'string') {
+                last_msg = last_msg.replace("Q: ", "");
+                console.log("Last msg and question in store_quesResponse ", last_msg, ques);
+                
+            }            
 
             if (last_msg === ques) {
                 ques = ques.replace("\n\nShare your thoughts!", " ");
