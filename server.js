@@ -93,7 +93,9 @@ webApp.post('/web', async (req, res) => {
 
 });
 
-
+webApp.get('/ping', (req, res) => {
+    res.status(200).send('Pong');
+});
 
 webApp.listen(process.env.PORT, () => {
     console.log(`Server is up and running at ${process.env.PORT}`);
